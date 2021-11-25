@@ -1,0 +1,26 @@
+version: "3.8"
+services:
+  wordpress:
+    image: wordpress:php7.2-apache
+    container_name: wordpress2
+    restart: always
+    ports:
+      - 8180:80
+    environment:
+      WORDPRESS_DB_HOST: mysql_db
+      WORDPRESS_DB_NAME: wordpress_db2
+      WORDPRESS_DB_USER: root
+      WORDPRESS_DB_PASSWORD: "ADMIN2021"
+      WORDPRESS_TABLE_PREFIX: "wp2_"
+    volumes:
+      - ./html:/var/www/html
+    networks:
+      wordpress_net:
+        aliases:
+          - wordpress_host2
+volumes:
+  html: {}
+networks:
+ wordpress_net:
+   name: database_wordpress_net
+   driver: bridge

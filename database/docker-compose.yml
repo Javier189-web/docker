@@ -1,0 +1,23 @@
+version: "3.9"
+services:
+  db:
+    image: mysql:5.7
+    container_name: wordpress_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: "ADMIN2021"
+    ports:
+      - 33070:3306
+    volumes:
+      - ./db:/var/lib/mysql
+    networks:
+      wordpress_net:
+        aliases:
+          - mysql_db
+volumes:
+  db: {}
+networks:
+  wordpress_net:
+    driver: bridge
+    ipam:
+      driver: default
